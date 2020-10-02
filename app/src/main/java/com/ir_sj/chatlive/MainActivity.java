@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText msg = (EditText)findViewById(R.id.input);
+                EditText message = (EditText)findViewById(R.id.input);
                 Toast.makeText(MainActivity.this, "Sent!", Toast.LENGTH_SHORT).show();
 
-                ref.push().setValue(new ChatMessage(msg.getText().toString(),
+                ref.push().setValue(new ChatMessage(message.getText().toString(),
                                 FirebaseAuth.getInstance().getCurrentUser()
                         .getDisplayName())
                         );
@@ -87,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
             displayChat();
         }
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
+        storageReference = FirebaseStorage.getInstance().getReference();
         sref = storageReference.child("images/" + UUID.randomUUID().toString());
         //downloadImage();
     }
